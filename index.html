@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Timothy Suria portfolio</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/30037cbdb1.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div class="container">
+                <nav>
+                    <img src="images/logo.png" class="logo">
+                    <ul>
+                        <li><a href="#header">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="header-text">
+                    <p>Software Developer</p>
+                    <h1>Hi, I'm <span>Timothy</span> <br>Suria from Indonesia</h1>
+                </div>
+            </div>
+        </div>
+        <!-------about------->
+        <div id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="about-col-1">
+                        <img src="images/about.png">
+                    </div>
+                    <div class="about-col-2">
+                        <h1 class="sub-title">about me</h1>
+                        <p>I am a computer science student currently enrolled in Monash University entering my final year
+                            of study. I have done many units and gained skills that are crucial in the field of computer
+                            programming such as object oriented and functional programming, agile development, algorithms 
+                            and data structures, etc. Click on each tab below to reveal more information about me.
+                        </p>
+                        <div class="tab-titles">
+                            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                            <p class="tab-links" onclick="opentab('experiences')">Experiences</p>
+                            <p class="tab-links" onclick="opentab('education')">Education</p>
+                        </div>
+                        <div class="tab-contents active-tab" id="skills">
+                            <ul>
+                                <li><span>Software development</span><br>Programming using python, C++, Javascript, etc</li>
+                                <li><span>UI/UX</span><br>Designing web/app interfaces</li>
+                                <li><span>Object oriented programming</span><br>Creating programs following the OOP paradigm</li>
+                                <li><span>Web development</span><br>Creating web applications</li>
+                                <li><span>Agile Development</span><br>Practicing the Agile methodologies such as sprints</li>
+                                <li><span>Microsoft Office</span><br>Powerpoint, Word, Excel</li>
+                            </ul>
+                        </div>
+                        <div class="tab-contents" id="experiences">
+                            <ul>
+                                <li><span>2022-2023</span><br>Backend engineer intern at PT V2 Indonesia</li>
+                                
+                            </ul>
+                        </div>
+                        <div class="tab-contents" id="education">
+                            <ul>
+                                <li><span>2021-Current</span><br>Bachelor of computer science from Monash University</li>
+                                <li><span>2020-2021</span><br>Diploma of Information Technology from Monash College</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!----contact-------->
+        <div id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="contact-left">
+                        <h1 class="sub-title">Contact me!</h1>
+                        <p><i class="fa-solid fa-paper-plane"></i>timothyjonatansuria@gmail.com</p>
+                        <p><i class="fa-solid fa-square-phone"></i>08118100899</p>
+                        <div class="social-icons">
+                            <a href="mailto: timothyjonatansuria@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="https://wa.me/08118100899"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="https://github.com/timothy-suria"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/timothy-suria-9a2111241/"><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                        <a href="images/Resume.pdf" download class="btn btn2">Download my CV</a>
+                    </div>
+                    <div class="contact-right"></div>
+                        <form name="submit-to-google-sheet">
+                            <input type="text" name="Name" placeholder="Your Name" required>
+                            <input type="text" name="Email" placeholder="Your Email" required>
+                            <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                            <button type="Submit" class="btn btn2">Submit</button>
+
+                        </form>
+                        <span id="msg"></span>
+                </div>
+            </div>
+            
+        </div>
+        <script>
+
+            var tablinks = document.getElementsByClassName("tab-links")
+            var tabcontents = document.getElementsByClassName("tab-contents")
+
+            function opentab(tabname){
+                for(tablink of tablinks){
+                    tablink.classList.remove("active-link");
+                }
+                for(tabcontent of tabcontents){
+                    tabcontent.classList.remove("active-tab");
+                }
+
+                event.currentTarget.classList.add("active-link");
+                document.getElementById(tabname).classList.add("active-tab");
+            }
+
+
+        </script>
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwJ-EtiEBrQGQPomVsBD3Qaim-EDLp9e2iqATkdH-JGtOuMIwICX6Oz24JR0RzkBJI7/exec'
+            const form = document.forms['submit-to-google-sheet']
+            const msg = document.getElementById("msg")
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    msg.innerHTML="message sent successfully"
+                    setTimeout(function(){
+                        msg.innerHTML = ""
+                    },5000)
+                    form.reset()
+                })
+                .catch(error => console.error('Error!', error.message))
+            })
+          </script>
+    </body>
+</html>
